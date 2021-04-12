@@ -10,14 +10,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
         Set<String> set = new HashSet<>();
-        set.add("USD");
         set.add("PLN");
-        set.add("CZK");
-        set.add("BTC");
-
-        Calculator calculator = new Calculator();
-        calculator.calculate(42);
     }
 }
