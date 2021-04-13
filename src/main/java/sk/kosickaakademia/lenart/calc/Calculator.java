@@ -32,4 +32,8 @@ public class Calculator {
     private void print(String from, String to, double eur, double result, double rate){
         System.out.println(eur+" "+from+" -> "+result+" "+to+" (exchange rate"+rate+" )");
     }
+
+    public void calculate(double base_currency_eur, String[] currency) {
+
+    }
 }
