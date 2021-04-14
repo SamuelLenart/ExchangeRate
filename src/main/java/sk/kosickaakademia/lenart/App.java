@@ -1,16 +1,24 @@
 package sk.kosickaakademia.lenart;
 
 
-import sk.kosickaakademia.lenart.calc.Calculator;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import sk.kosickaakademia.lenart.database.Database;
 
-import java.util.HashSet;
-import java.util.Set;
-
-public class App
+public class App extends Application
 {
-    public static void main( String[] args )
-    {
-        Set<String> set = new HashSet<>();
-        set.add("PLN");
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("GuiFx.fxml"));
+        primaryStage.setTitle("CurrencyExchanger3000");
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.show();
+    }
+    public static void main(String[] args) {
+        launch(args);
+        Database database=new Database();
     }
 }
