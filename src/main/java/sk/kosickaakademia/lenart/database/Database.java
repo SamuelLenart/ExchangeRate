@@ -10,9 +10,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Database {
-    private static final MongoClient mongoClient = new MongoClient();
-    private static final MongoDatabase database = mongoClient.getDatabase("mydb");;
-    private static MongoCollection<Document> test;
+    private static MongoClient client = MongoClient.create();
+
+    public void test(){
+        MongoDatabase database = client.getDatabase("test");
+        MongoCollection<Document> toys = database.getCollection("test21");
+        Document toy = new Document("name", "yoyo").append("ages", new Document());
+        toys.insertOne(toy);
+    }
+    /*private static final MongoClient mongoClient = new MongoClient();
+    private static final MongoDatabase database = mongoClient.getDatabase("test");;
+    private static MongoCollection<Document> test = database.getCollection("currency");
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public <T> void add(String from, String to, double value, T result){
@@ -26,5 +34,5 @@ public class Database {
         System.out.println(object);
         Document doc = Document.parse(object.toJSONString());
         test.insertOne(doc);
-    }
+    }*/
 }
