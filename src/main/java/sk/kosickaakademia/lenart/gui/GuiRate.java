@@ -16,6 +16,10 @@ public class GuiRate {
     private Button btn_exchange;
     private TextField txt_eur;
     private ListView classic;
+    public TextField txt_usd;
+    public TextField txt_czk;
+    public TextField txt_huf;
+    public TextField txt_pln;
 
     public void exchange(ActionEvent actionEvent) {
         Calculator calc=new Calculator();
