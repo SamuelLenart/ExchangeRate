@@ -1,12 +1,13 @@
 package sk.kosickaakademia.lenart.calc;
 
 import sk.kosickaakademia.lenart.api.ApiRequest;
+import sk.kosickaakademia.lenart.database.Database;
 
 import java.util.*;
 
 public class Calculator {
 
-    private static final String[] rates = new String[]{"USD","CZK","HUF","PLN","BTC"};
+    private static final String[] rates = new String[]{"USD","CZK","HUF","PLN"};
 
     public void calculate(double eur){
         if(eur<0){
@@ -35,6 +36,8 @@ public class Calculator {
             System.out.println("Input number can't be a negative value!");
             return null;
         }
+        Database mongo=new Database();
+        mongo.writeData(base_currency_eur,currency);
         Set<String> set=new HashSet<>();
         Collections.addAll(set, currency);
         ApiRequest apiRequest=new ApiRequest();

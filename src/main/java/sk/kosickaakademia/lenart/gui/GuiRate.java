@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import sk.kosickaakademia.lenart.calc.Calculator;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class GuiRate {
@@ -20,15 +21,24 @@ public class GuiRate {
     public TextField txt_czk;
     public TextField txt_huf;
     public TextField txt_pln;
+    public TextField txt_btc;
 
     public void exchange(ActionEvent actionEvent) {
+        String value = txt_eur.getText();
+        double valueEur=Double.parseDouble(value);
         Calculator calc=new Calculator();
-        String base_currency=txt_eur.getText();
-        if (base_currency.isEmpty()){
-            return;
-        }
-        double base_currency_eur=Double.parseDouble(base_currency);
+        Map results = calc.calculate(valueEur,currency);
+        txt_czk.setText(convertTo2Decimal((double)results.get("CZK")));
+        txt_huf.setText(convertTo2Decimal((double)results.get("HUF")));
+        txt_pln.setText(convertTo2Decimal((double)results.get("PLN")));
+        txt_usd.setText(convertTo2Decimal((double)results.get("PLN")));
+        txt_btc.setText(results.get("BTC").toString());
+        double base_currency_eur=Double.parseDouble(value);
         calc.calculate(base_currency_eur,currency);
-
+    }
+    private String convertTo2Decimal(double value){
+        DecimalFormat df = new DecimalFormat("#.00");
+        String angleFormated = df.format(value);
+        return angleFormated;
     }
 }

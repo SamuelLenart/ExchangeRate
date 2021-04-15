@@ -17,7 +17,7 @@ public class Database {
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public <T> void add(String from, String to, double value, T result){
-        database=mongoClient.getDatabase("ExchangeDB");
+        database=mongoClient.getDatabase("DBrate");
         test = database.getCollection("currency");
         JSONObject object = new JSONObject();
         object.put("datetime", format.format(new Date()));
@@ -26,6 +26,16 @@ public class Database {
         object.put("to", to);
         object.put("result", result);
         System.out.println(object);
+        docs = Document.parse(object.toJSONString());
+        test.insertOne(docs);
+    }
+    public void writeData(double value, String[] to){
+        database = mongoClient.getDatabase("DBrate");
+        test = database.getCollection("conversion");
+        JSONObject object = new JSONObject();
+        object.put("value", value);
+        object.put("to", to);
+        object.put("datetime", format.format(new Date()));
         docs = Document.parse(object.toJSONString());
         test.insertOne(docs);
     }

@@ -13,12 +13,13 @@ public class App extends Application
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("GuiFx.fxml"));
-        primaryStage.setTitle("CurrencyExchanger3000");
+        primaryStage.setTitle("CurrencyExchanger");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
     public static void main(String[] args) {
         launch(args);
         Database database=new Database();
+        database.test();
     }
 }
