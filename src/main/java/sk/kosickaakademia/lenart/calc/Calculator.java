@@ -2,10 +2,7 @@ package sk.kosickaakademia.lenart.calc;
 
 import sk.kosickaakademia.lenart.api.ApiRequest;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Calculator {
 
@@ -33,7 +30,22 @@ public class Calculator {
         System.out.println(eur+" "+from+" -> "+result+" "+to+" (exchange rate"+rate+" )");
     }
 
-    public void calculate(double base_currency_eur, String[] currency) {
+    public Map<String, Double> calculate(double base_currency_eur, String[] currency) {
+        if(base_currency_eur<0){
+            System.out.println("Input number can't be a negative value!");
+            return null;
+        }
+        Set<String> set=new HashSet<>();
+        Collections.addAll(set, currency);
+        ApiRequest apiRequest=new ApiRequest();
+        Map map=apiRequest.getExchangeRate(set);
+        Map<String,Double> values=new HashMap<>();
+        Iterator<Map.Entry<String,Double>> itr=map.entrySet().iterator();
+        while(itr.hasNext()){
+            Map.Entry<String, Double> entry = itr.next();
+            values.put(entry.getKey(),entry.getValue()*base_currency_eur);
+        }
 
+        return values;
     }
 }

@@ -10,20 +10,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Database {
-    private static MongoClient client = MongoClient.create();
-
-    public void test(){
-        MongoDatabase database = client.getDatabase("test");
-        MongoCollection<Document> toys = database.getCollection("test21");
-        Document toy = new Document("name", "yoyo").append("ages", new Document());
-        toys.insertOne(toy);
-    }
-    /*private static final MongoClient mongoClient = new MongoClient();
-    private static final MongoDatabase database = mongoClient.getDatabase("test");;
-    private static MongoCollection<Document> test = database.getCollection("currency");
+    private static final MongoClient mongoClient = new MongoClient();
+    private static MongoDatabase database;
+    private static MongoCollection<Document> test;
+    private static Document docs;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public <T> void add(String from, String to, double value, T result){
+        database=mongoClient.getDatabase("ExchangeDB");
         test = database.getCollection("currency");
         JSONObject object = new JSONObject();
         object.put("datetime", format.format(new Date()));
@@ -32,7 +26,13 @@ public class Database {
         object.put("to", to);
         object.put("result", result);
         System.out.println(object);
-        Document doc = Document.parse(object.toJSONString());
-        test.insertOne(doc);
-    }*/
+        docs = Document.parse(object.toJSONString());
+        test.insertOne(docs);
+    }
+    public void test(){
+        database=mongoClient.getDatabase("testDB");
+        test = database.getCollection("test");
+        docs=new Document("name","samuel").append("ages",new Document("age","20"));
+        test.insertOne(docs);
+    }
 }
