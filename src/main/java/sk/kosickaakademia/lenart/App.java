@@ -16,7 +16,7 @@ import java.net.URL;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("GuiFx.fxml"));
+        Parent root=FXMLLoader.load(getClass().getClassLoader().getResource("GuiFx.fxml"));
         primaryStage.setTitle("CurrencyExchanger");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
