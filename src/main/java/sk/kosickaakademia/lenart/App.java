@@ -6,10 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sk.kosickaakademia.lenart.calc.Calculator;
 import sk.kosickaakademia.lenart.database.Database;
 
-public class App extends Application
-{
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("GuiFx.fxml"));
@@ -22,4 +26,5 @@ public class App extends Application
         Database database=new Database();
         database.test();
     }
-}
+    }
+
