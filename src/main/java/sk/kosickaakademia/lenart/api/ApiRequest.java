@@ -12,7 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 public class ApiRequest {
 
-    private static final String key = "7580cbb2ff99ae817c3cee37d843bc55";
+    private static final String key = "a58dfdf8382b5275e14aeb1b74c7c01f";
 
     public Map getExchangeRate(Set<String> rate){
         if(rate==null || rate.size()==0)
@@ -23,7 +23,7 @@ public class ApiRequest {
     private String getRatesFromAPIServer(){
         try {
 
-            URL url = new URL("http://api.currencylayer.com/live?access_key="+key+"&format=1");
+            URL url = new URL("http://data.fixer.io/api/latest?access_key="+key);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

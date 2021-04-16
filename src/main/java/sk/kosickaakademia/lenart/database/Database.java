@@ -17,8 +17,8 @@ public class Database {
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public void writeData(double value, String[] to){
-        database = mongoClient.getDatabase("DBrate");
-        test = database.getCollection("conversion");
+        database = mongoClient.getDatabase("ExchangeDB");
+        test = database.getCollection("currency");
         JSONObject object = new JSONObject();
         object.put("value", value);
         object.put("to", to);
