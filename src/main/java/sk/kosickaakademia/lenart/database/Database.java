@@ -1,6 +1,7 @@
 package sk.kosickaakademia.lenart.database;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -10,26 +11,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Database {
-    private static final MongoClient mongoClient = new MongoClient();
+    private static final MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
     private static MongoDatabase database;
-    private static MongoCollection<Document> test;
+    private static MongoCollection<Document> collection;
     private static Document docs;
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public void writeData(double value, String[] to){
         database = mongoClient.getDatabase("ExchangeDB");
-        test = database.getCollection("currency");
+        collection = database.getCollection("currency");
         JSONObject object = new JSONObject();
         object.put("value", value);
         object.put("to", to);
-        object.put("datetime", format.format(new Date()));
+        object.put("datetime", date.format(new Date()));
         docs = Document.parse(object.toJSONString());
-        test.insertOne(docs);
+        collection.insertOne(docs);
     }
     public void test(){
         database=mongoClient.getDatabase("testDB");
-        test = database.getCollection("test");
+        collection = database.getCollection("test");
         docs=new Document("name","samuel").append("ages",new Document("age","20"));
-        test.insertOne(docs);
+        collection.insertOne(docs);
     }
 }

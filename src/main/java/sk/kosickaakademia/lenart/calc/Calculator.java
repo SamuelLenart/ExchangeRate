@@ -6,7 +6,7 @@ import sk.kosickaakademia.lenart.database.Database;
 import java.util.*;
 
 public class Calculator {
-
+    Database mongo=new Database();
     private static final String[] rates = new String[]{"USD","CZK","HUF","PLN"};
 
     public void calculate(double eur){
@@ -36,17 +36,14 @@ public class Calculator {
             System.out.println("Input number can't be a negative value!");
             return null;
         }
-        Database mongo=new Database();
         mongo.writeData(base_currency_eur,currency);
         Set<String> set=new HashSet<>();
         Collections.addAll(set, currency);
         ApiRequest apiRequest=new ApiRequest();
         Map map=apiRequest.getExchangeRate(set);
-        Map<String,Double> values=new HashMap<>();
-        Iterator<Map.Entry<String,Double>> itr=map.entrySet().iterator();
-        while(itr.hasNext()){
-            Map.Entry<String, Double> entry = itr.next();
-            values.put(entry.getKey(),entry.getValue()*base_currency_eur);
+        Map<String,Double>values=new HashMap<>();
+        for (Map.Entry<String, Double> entry : (Iterable<Map.Entry<String, Double>>) map.entrySet()) {
+            values.put(entry.getKey(), entry.getValue() * base_currency_eur);
         }
 
         return values;

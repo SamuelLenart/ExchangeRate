@@ -18,9 +18,9 @@
                 <Font name="Arial Black" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="txt_usd" layoutX="318.0" layoutY="151.0" prefHeight="25.0" prefWidth="158.0" />
+        <TextField fx:id="txt_usd" layoutX="317.0" layoutY="142.0" prefHeight="25.0" prefWidth="158.0" />
         <TextField fx:id="txt_czk" layoutX="318.0" layoutY="187.0" prefHeight="25.0" prefWidth="158.0" />
-        <TextField fx:id="txt_gbp" layoutX="318.0" layoutY="229.0" prefHeight="25.0" prefWidth="158.0" />
+        <TextField fx:id="txt_huf" layoutX="318.0" layoutY="229.0" prefHeight="25.0" prefWidth="158.0" />
         <TextField fx:id="txt_pln" layoutX="318.0" layoutY="275.0" prefHeight="25.0" prefWidth="158.0" />
         <TextField fx:id="txt_btc" layoutX="318.0" layoutY="318.0" prefHeight="25.0" prefWidth="158.0" />
     </children>
