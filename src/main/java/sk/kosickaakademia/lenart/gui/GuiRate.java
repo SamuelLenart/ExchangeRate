@@ -42,7 +42,7 @@ public class GuiRate {
                 label_error.setVisible(false);
                 Map results = calc.calculate(valueEur, currency);
                 txt_czk.setText(convertTo2Decimal((double) results.get("CZK")));
-                txt_huf.setText(convertTo2Decimal((double) results.get("GBP")));
+                txt_huf.setText(convertTo2Decimal((double) results.get("HUF")));
                 txt_pln.setText(convertTo2Decimal((double) results.get("PLN")));
                 txt_usd.setText(convertTo2Decimal((double) results.get("USD")));
                 txt_btc.setText(results.get("BTC").toString());

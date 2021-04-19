@@ -8,7 +8,9 @@ import org.bson.Document;
 import org.json.simple.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class Database {
     private static final MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -20,11 +22,10 @@ public class Database {
     public void writeData(double value, String[] to){
         database = mongoClient.getDatabase("ExchangeDB");
         collection = database.getCollection("currency");
-        JSONObject object = new JSONObject();
-        object.put("value", value);
-        object.put("to", to);
-        object.put("datetime", date.format(new Date()));
-        docs = Document.parse(object.toJSONString());
+        List<String> list = Arrays.asList(to.clone());
+        docs=new Document("date",date.toString())
+                .append("value",value)
+                .append("rates", list);
         collection.insertOne(docs);
     }
     public void test(){
